@@ -1,7 +1,10 @@
 before_install:
     - sudo apt-get update -qq
     - sudo apt-get install -qq libxml2-dev libxslt-dev cmake
-    - gem install bundler
+    - gem update --system
+
+jdk:
+    - oraclejdk8
 
 language: ruby
 rvm:
