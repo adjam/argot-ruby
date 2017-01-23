@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    argot (0.0.7-java)
+    argot (0.0.8-java)
       jar-dependencies (~> 0.3, >= 0.3.9)
       lisbn (~> 0.2)
       nokogiri (~> 1.6, >= 1.6.8)
@@ -29,6 +29,7 @@ GEM
       marc (~> 1.0)
     marc-marc4j (1.0.0-java)
       marc (~> 1)
+    minitest (5.4.1)
     nokogiri (1.7.0.1-java)
     nori (2.6.0)
     rsolr (1.1.2)
@@ -58,6 +59,7 @@ PLATFORMS
 
 DEPENDENCIES
   argot!
+  minitest (~> 5.0)
 
 BUNDLED WITH
    1.13.7
