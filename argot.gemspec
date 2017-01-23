@@ -39,7 +39,10 @@ Gem::Specification.new do |s|
     s.add_runtime_dependency 'thor', ['~> 0.19.4']
     s.add_runtime_dependency 'rsolr', [ '~> 1.1', '>=1.1.2']
 
+    s.add_development_dependency 'rake', '~> 11.0'
+
     # system rubies may be installed wihtout minitest
     s.add_development_dependency 'minitest', '~> 5.0'
+
 
 end
