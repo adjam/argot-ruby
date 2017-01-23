@@ -86,6 +86,8 @@ module Argot::XML
             else
                 @handler = -> (el) {el}
             end
+            @current_doc = nil
+            @current = nil
         end
 
         # get the current context of the document
