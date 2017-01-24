@@ -3,6 +3,10 @@ before_install:
     - sudo apt-get install -qq libxml2-dev libxslt-dev cmake
     - gem update --system
 
+cache:
+    directories: 
+        - $HOME/.m2
+
 jdk:
     - oraclejdk8
 
@@ -11,4 +15,6 @@ rvm:
        - 2.3
        - 2.4.0
        - jruby-9.1.5.0
+
+
 
