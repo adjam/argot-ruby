@@ -1,6 +1,9 @@
 *.gem
 *.sublime-*
 Gemfile.lock
+.idea/
 doc/
 .yardoc
+lib/*_jars.rb
+lib/org/
 

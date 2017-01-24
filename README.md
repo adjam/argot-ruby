@@ -1,15 +1,34 @@
 # Argot : a Ruby gem for TRLN shared discovery ingest processes
 
-Rakefile is a work in progress.  It does support tests, so
+This gem provides libraries and command-line utilities for working with Argot, the ingest format for
+the TRLN shared index.
+
+# Installation
+
+Start with
+
+    $ bundle install
+
+(as long as you have the `bundler` gem available) will install all the dependencies. then
+
 
     $ rake test
 
-Will work, but you can't use `rake install` yet.  Try `gem build argot` in this directory, which will crate the gemfile you can install locally.
+or even just
 
-As of v0.0.4, this gem is supported under both MRI and JRuby.
+    $ rake
+
+Will run the tests.
+
+    $ rake install 
+    
+will install the gem.
+
+This gems is supported under both MRI and JRuby, but for small input files
+especially, MRI is likely to be faster.  No optimizations are yet in place to
+take advantage of multithreading under JRuby.
 
 ## Usage 
-
 ```ruby
 
 require 'json' # only required for the example
@@ -31,14 +50,14 @@ end
 
 ## CLI
 
-After installing the gem (`gem build argot.gemspec; gem install argot`), you can run `argot help` to see the available commands.
+After installing the gem, you can run `argot help` to see the available commands.
 
 ## Documentation
 
 To build the documentation, I suggest YARD.  
 
     $ gem install yard
-    $ gem install redcarpet
+    $ gem install redcarpet # may need a different markdown parser under jruby
     $ yard
 
 This will create files in `doc/`
@@ -47,9 +66,7 @@ This will create files in `doc/`
 
 All Platforms:
 
- * `nokogiri`
  * [`traject`](https://github.com/traject/traject)
- * `lisbn`
 
 ### MRI
 
@@ -60,33 +77,12 @@ requires `libxml2-devel` and `libxslt-devel`.
 
 ### JRuby
 
- * `jbundler` 
+ * `jar-dependencies` 
 
-Also uses `noggit`, the Java-based JSON parser from Solr, to process JSON; import and use should be handled for you automatically.
+Also uses `noggit`, the Java-based JSON parser from Solr, to process JSON;
+import and use should be handled for you automatically.
 
 ### Utilities
 
-`Argot::XML::EventParser` - parser that handles large record-oriented XML files
-one record at a time.
- 
 See also `Argot::TrajectJSONWriter` for a Traject JSON writer that produces
 'flat' values where the traditional writers produce arrays.
-
-### Convert ICE to JSON
-
-This gem currently includes one script, `ice_to_json`, which processes XML in
-the ICE format (table of contents data) into concatenated JSON output, suitable
-for ingest into Solr.
-
-    $ ice_to_json tc2349080.xml > ice_updates-$(date +%Y-%m-%d).json
-
-The resulting file is suitable for ingesting directly into Solr, assuming you
-have a suitable schema -- for testing, you can use solr's data-driven configSet and just make sure to add the ISBN field as a string, multivalued, stored, and indexed.  Then the following will serve to ingest, assuming your collection is named "icetocs":
-
-    $ curl -H'Content-Type: application/json' --data-binary @out.json http://localhost:8983/solr/icetocs/update/json/docs
-    $ curl http://localhost:8983/solr/icetocs/update?commit=true
-
-
-
-
-
